@@ -131,3 +131,5 @@ dist
 .DS_Store
 
 **/lib
+packages/holder/cli-test/.config.json
+packages/holder/src/utils/config.ts
