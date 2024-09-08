@@ -2,6 +2,8 @@
 
 Walrus Pass is an innovative solution designed to securely manage and verify digital assets such as subscription models, proof of purchase, concert tickets, licenses, and more. Leveraging the security and transparency of blockchain technology, Walrus Pass enables users to effectively prove their rights to various assets.
 
+![walrus pass](https://docs.zktx.io/images/walrus-pass.svg)
+
 ## Key Use Cases for Walrus Pass
 
 1. **Subscription Management**: Easily manage digital content, services, or memberships with Walrus Pass. Users can prove their subscription rights on the blockchain, while companies can manage subscriptions transparently and automatically, reducing the risk of unauthorized access.
