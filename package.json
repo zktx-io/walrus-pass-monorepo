@@ -1,0 +1,33 @@
+{
+  "name": "walrus-pass",
+  "version": "0.0.1",
+  "description": "walrus pass - Decentralized Proof of Ownership and Access",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zktx-io/walrus-pass.git"
+  },
+  "scripts": {
+    "install:did": "cd packages/walrus-did && npm i",
+    "install:did-resolver": "cd packages/walrus-did-resolver && npm i",
+    "install:holder": "cd packages/holder && npm i",
+    "install:all": "npm run install:did && npm run install:did-resolver && npm run install:holder",
+    "format:did": "cd packages/walrus-did && npm run format",
+    "format:did-resolver": "cd packages/walrus-did-resolver && npm run format",
+    "format:holder": "cd packages/holder && npm run format",
+    "format": "npm run format:did && npm run format:did-resolver && npm run format:holder",
+    "build:did": "cd packages/walrus-did && npm run build",
+    "build:did-resolver": "cd packages/walrus-did-resolver && npm run build",
+    "build:holder": "cd packages/holder && npm run build",
+    "build": "npm run build:did && npm run build:did-resolver",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd packages/holder && npm run start"
+  },
+  "author": "daoauth",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/walrus-did",
+    "packages/walrus-did-resolver",
+    "packages/holder"
+  ]
+}
