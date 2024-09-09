@@ -1,4 +1,5 @@
-### Walrus Pass: Your Gateway to Secure, Decentralized Ownership  
+### Walrus Pass: Your Gateway to Secure, Decentralized Ownership
+
 **Powered by did:walrus – Decentralized Identity for the Next Generation of Digital Access**
 
 ![walrus pass](https://docs.zktx.io/images/walrus-pass.svg)
