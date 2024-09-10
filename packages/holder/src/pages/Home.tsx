@@ -17,7 +17,11 @@ import { useRecoilState } from 'recoil';
 import { useProviderFS } from '../provider/file';
 import { IAccount, walrusDidState } from '../recoil';
 import { getGoogleloginInfo } from '../utils/getGoogleloginInfo';
-import { FILE_NAME_ACCOUNT, FILE_NAME_DID_DOCS, SALT_TEMP } from '../utils/config';
+import {
+  FILE_NAME_ACCOUNT,
+  FILE_NAME_DID_DOCS,
+  SALT_TEMP,
+} from '../utils/config';
 import { Account } from '../component/Account';
 import { DidDocs } from '../component/DidDocs';
 import { jwtToAddress } from '@mysten/zklogin';
@@ -84,10 +88,10 @@ export const Home = () => {
                 Buffer.from(docs).toString('utf8'),
               ) as string[];
             }
-            setWalrusState({ account, didDocs });            
+            setWalrusState({ account, didDocs });
           } else {
             // temp
-            setShowLoginBtn(false)
+            setShowLoginBtn(false);
             const { id_token: jwt } = queryString.parse(location.hash) as {
               id_token: string;
             };
@@ -110,6 +114,7 @@ export const Home = () => {
               FILE_NAME_ACCOUNT,
               Buffer.from(JSON.stringify(account), 'utf8'),
             );
+            setShowLoginBtn(true);
             navigate('/');
             // temp
           }
@@ -138,7 +143,7 @@ export const Home = () => {
       }}
     >
       <Stack spacing={2} alignItems="center">
-        {!initialized && (
+        {(!initialized || !showLoginBtn) && (
           <>
             <Typography>Loading</Typography>
             <Box sx={{ width: '200px' }}>
