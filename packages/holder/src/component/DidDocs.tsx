@@ -22,7 +22,7 @@ import {
 import { enqueueSnackbar } from 'notistack';
 
 import { walrusDidState } from '../recoil';
-import { FILE_NAME_DID_DOCS, ISSUER } from '../utils/config';
+import { FILE_NAME_DID_DOCS } from '../utils/config';
 import { useState } from 'react';
 import { useProviderFS } from '../provider/file';
 import { ViewDoc } from './ViewDoc';
@@ -30,6 +30,7 @@ import { ViewDoc } from './ViewDoc';
 export const DidDocs = () => {
   const fs = useProviderFS();
 
+  const ISSUER = process.env.REACT_APP_ISSUER;
   const [walrusState, setWalrusState] = useRecoilState(walrusDidState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -83,7 +84,7 @@ export const DidDocs = () => {
               didDoc.didDocument.id,
             );
 
-            if (verify.verified) {
+            if (verify.verified && ISSUER) {
               const controller = new WalrusDIDController(
                 'devnet',
                 toB64(fromB64(ISSUER).slice(1)),
