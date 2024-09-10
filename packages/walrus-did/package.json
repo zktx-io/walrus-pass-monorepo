@@ -2,6 +2,10 @@
   "name": "@zktx.io/walrus-did",
   "version": "0.0.1",
   "description": "Create, manage and use did:walrus identifiers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zktx-io/walrus-pass-monorepo.git"
+  },
   "type": "module",
   "main": "./lib/index.cjs",
   "module": "./lib/index.module.js",
