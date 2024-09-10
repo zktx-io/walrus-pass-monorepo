@@ -1,7 +1,11 @@
 {
   "name": "@zktx.io/walrus-did-resolver",
   "version": "0.0.1",
-  "description": "Resolve DID documents for sui addresses",
+  "description": "Resolve DID documents for walrus did (did:walrus)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zktx-io/walrus-pass-monorepo.git"
+  },
   "type": "module",
   "main": "./lib/index.cjs",
   "module": "./lib/index.module.js",
