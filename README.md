@@ -1,4 +1,4 @@
-### Walrus Pass: Your Gateway to Secure, Decentralized Ownership
+# Walrus Pass: Your Gateway to Secure, Decentralized Ownership
 
 **Powered by did:walrus – Decentralized Identity for the Next Generation of Digital Access**
 
@@ -6,7 +6,7 @@
 
 **Walrus Pass** is an innovative solution for securely managing and proving ownership of digital assets, including subscriptions, tickets, licenses, and more. By leveraging blockchain technology, **Walrus Pass** offers a secure, verifiable, and tamper-proof system for digital rights management. It provides users with a flexible and transparent way to demonstrate ownership and access in the digital economy. With **zkLogin**, users can create decentralized identities (DIDs) effortlessly, making the use of this cutting-edge technology quick, simple, and secure.
 
-### Key Use Cases for Walrus Pass:
+## Key Use Cases for Walrus Pass:
 
 1. **Subscription Management**  
    Easily manage digital content, services, or memberships with **Walrus Pass**. Users can prove their subscription rights on the blockchain, while companies can securely manage subscriptions and reduce unauthorised access.
@@ -35,7 +35,7 @@
 1. **And More…**  
    Walrus Pass is a versatile tool that can be expanded to fit various other use cases. From secure document storage to advanced identity verification solutions, it adapts to the needs of developers and businesses in the evolving digital landscape.
 
-### Why Walrus Pass?
+## Why Walrus Pass?
 
 - **Security**: Utilizes blockchain technology to ensure data immutability and reliability. All ownership and access rights are securely stored on the blockchain, making them tamper-proof.
 - **Transparency**: Every transaction and ownership record is publicly recorded on the blockchain, providing an open ledger that fosters trust between users and businesses.
