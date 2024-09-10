@@ -33,10 +33,11 @@ jobs:
           npm run build
 
       - name: Deploy site to Walrus
-        uses: zktx-io/walrus-sites-ga@v0.1.0
+        uses: zktx-io/walrus-sites-ga@v0.1.1
         with:
           config-path: '/tmp/holder/builder.yaml'
           site-path: '/tmp/holder/build'
+          object-id: '0xc6fee78376d0041b30e4ebd6eb54a0cbf03662c1f4825d0a90bdf075a41e43fd'
           network: 'testnet'
         env:
           SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
