@@ -22,6 +22,7 @@ export const Auth = () => {
   const location = useLocation();
 
   const fs = useProviderFS();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setWalrusState] = useRecoilState(walrusDidState);
 
   useEffect(() => {
