@@ -28,25 +28,24 @@ export const ViewDoc = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Walrus DID Doc</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            <Stack spacing={2}>
-              <Stack>
-                <Typography>DID</Typography>
-                <Box>{didDoc.didDocument?.id}</Box>
-              </Stack>
+          <Stack spacing={2} width="100%">
+            <Stack>
+              <Typography>DID</Typography>
+              <Box>{didDoc.didDocument?.id}</Box>
+            </Stack>
+            <Box>
               <TextField
+                fullWidth
                 size="small"
                 multiline
                 rows={10}
                 defaultValue={JSON.stringify(didDoc, null, 4)}
-                slotProps={{
-                  input: {
-                    readOnly: true,
-                  },
+                InputProps={{
+                  readOnly: true,
                 }}
               />
-            </Stack>
-          </DialogContentText>
+            </Box>
+          </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

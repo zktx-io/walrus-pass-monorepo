@@ -21,12 +21,13 @@ import { Resolver } from 'did-resolver';
 import { useRecoilState } from 'recoil';
 
 import { walrusDidState } from '../recoil';
-import { FILE_NAME_DID_DOCS, ISSUER } from '../utils/config';
+import { FILE_NAME_DID_DOCS } from '../utils/config';
 import { useProviderFS } from '../provider/file';
 
 export const Account = () => {
   const fs = useProviderFS();
 
+  const ISSUER = process.env.REACT_APP_ISSUER;
   const [walrusState, setWalrusState] = useRecoilState(walrusDidState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -46,7 +47,7 @@ export const Account = () => {
             decodedJwt.aud as string,
           ).toString();
 
-        if (addressSeed && decodedJwt.iss) {
+        if (addressSeed && decodedJwt.iss && ISSUER) {
           const walrusDID = new WalrusDID({
             privateKey: walrusState.account.nonce.privateKey,
             zkLogin: {

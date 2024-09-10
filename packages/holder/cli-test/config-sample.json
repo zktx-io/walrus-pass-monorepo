@@ -1,0 +1,10 @@
+{
+  "issuer": {
+    "address": "0x....",
+    "privateKey": "base64 / sui keytool generate ed25519"
+  },
+  "holder": {
+    "address": "0x....",
+    "privateKey": "base64 / sui keytool generate ed25519"
+  }
+}

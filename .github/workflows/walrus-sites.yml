@@ -1,0 +1,38 @@
+name: Deploy Walrus Site using Walrus Sites GA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+  
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        env:
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          REACT_APP_ISSUER: ${{ secrets.REACT_APP_ISSUER }}
+        run: npm run build:holder
+
+      - name: Deploy site to Walrus
+        uses: zktx-io/walrus-sites-ga@v0.1.0
+        with:
+          config-path: './packages/holder/builder.yaml'
+          site-path: './packages/holder/build'
+          network: 'testnet'
+        env:
+          SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
+          SUI_KEYSTORE: ${{ secrets.SUI_KEYSTORE }}
