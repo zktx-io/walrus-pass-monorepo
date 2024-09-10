@@ -26,6 +26,7 @@ import { FILE_NAME_DID_DOCS } from '../utils/config';
 import { useState } from 'react';
 import { useProviderFS } from '../provider/file';
 import { ViewDoc } from './ViewDoc';
+import { ViewBarCode } from './ViewBarCode';
 
 export const DidDocs = () => {
   const fs = useProviderFS();
@@ -142,6 +143,7 @@ export const DidDocs = () => {
                       Walrus DID
                     </Typography>
                     <span>
+                      <ViewBarCode didDoc={didDoc} />
                       <ViewDoc didDoc={didDoc} />
                       <IconButton
                         size="small"
