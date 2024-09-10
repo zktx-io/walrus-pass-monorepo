@@ -18,21 +18,19 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build React app
-        env:
-          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
-          REACT_APP_ISSUER: ${{ secrets.REACT_APP_ISSUER }}
-        run: npm run build:holder
-
       - name: Copy holder package to temporary directory
         run: |
           mkdir -p /tmp/holder
           cp -r ./packages/holder/* /tmp/holder/
 
-      - name: Install dependencies in temporary directory
+      - name: Install dependencies in temporary directory and Build React app
+        env:
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          REACT_APP_ISSUER: ${{ secrets.REACT_APP_ISSUER }}
         run: |
           cd /tmp/holder
           npm install
+          npm run build
 
       - name: Deploy site to Walrus
         uses: zktx-io/walrus-sites-ga@v0.1.0
