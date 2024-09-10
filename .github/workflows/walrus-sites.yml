@@ -18,20 +18,27 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Build React app
         env:
           REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
           REACT_APP_ISSUER: ${{ secrets.REACT_APP_ISSUER }}
         run: npm run build:holder
 
+      - name: Copy holder package to temporary directory
+        run: |
+          mkdir -p /tmp/holder
+          cp -r ./packages/holder/* /tmp/holder/
+
+      - name: Install dependencies in temporary directory
+        run: |
+          cd /tmp/holder
+          npm install
+
       - name: Deploy site to Walrus
         uses: zktx-io/walrus-sites-ga@v0.1.0
         with:
-          config-path: './packages/holder/builder.yaml'
-          site-path: './packages/holder/build'
+          config-path: '/tmp/holder/builder.yaml'
+          site-path: '/tmp/holder/build'
           network: 'testnet'
         env:
           SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
