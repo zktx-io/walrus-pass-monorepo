@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import { Box, IconButton, Stack, TextField } from '@mui/material';
 import { DIDResolutionResult } from 'did-resolver';
-import bwipjs from '@bwip-js/browser';
+import { QRCodeSVG } from 'qrcode.react';
 import { WalrusDID } from '@zktx.io/walrus-did';
 import { genAddressSeed } from '@mysten/zklogin';
 import { decodeJwt } from 'jose';
@@ -21,10 +21,10 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
 
   const [walrusState] = useRecoilState(walrusDidState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [svgContent, setSvgContent] = useState<string>('');
+  const [qrValue, setQRValue] = useState<string>('');
 
   const handleClickOpen = () => {
-    setSvgContent('');
+    setQRValue('');
     setInputValue('');
     setOpen(true);
   };
@@ -68,12 +68,7 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
             const jwt = await walrusDID.signJWT(didDoc.didDocument.id, {
               walrus: { code: inputValue },
             });
-            setSvgContent(
-              bwipjs.toSVG({
-                bcid: 'pdf417',
-                text: jwt,
-              }),
-            );
+            setQRValue(jwt);
           }
         }
       } catch (error) {
@@ -100,7 +95,7 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
             alignItems="center"
             paddingTop={4}
           >
-            {!svgContent && (
+            {!qrValue && (
               <Stack direction="row" spacing={1} width="100%">
                 <TextField
                   fullWidth
@@ -119,26 +114,27 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
                 </Button>
               </Stack>
             )}
-            {svgContent && (
+            {qrValue && (
               <Box
                 sx={{
-                  width: {
-                    md: '620px',
-                    sm: '420px',
-                    xs: '400px',
-                  },
+                  width: '100%',
                   display: 'flex',
-                  flexDirection: 'column',
                   justifyContent: 'center',
                   alignItems: 'center',
                   backgroundColor: 'white',
-                  padding: 1,
                 }}
               >
-                <div
-                  dangerouslySetInnerHTML={{ __html: svgContent }}
-                  style={{ width: '100%', marginTop: 8 }}
-                />
+                {qrValue && (
+                  <QRCodeSVG
+                    marginSize={1}
+                    value={qrValue}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                )}
               </Box>
             )}
           </Stack>

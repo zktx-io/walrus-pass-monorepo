@@ -30,7 +30,6 @@
     ]
   },
   "dependencies": {
-    "@bwip-js/browser": "^4.5.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fontsource/roboto": "^5.0.15",
@@ -43,6 +42,7 @@
     "browserfs": "^1.4.3",
     "did-resolver": "^4.1.0",
     "notistack": "^3.0.1",
+    "qrcode.react": "^4.0.1",
     "query-string": "^9.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
