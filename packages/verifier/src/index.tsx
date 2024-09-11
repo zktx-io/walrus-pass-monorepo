@@ -1,15 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import { Cancel as CancelIcon } from '@mui/icons-material';
+import { CssBaseline, IconButton, ThemeProvider } from '@mui/material';
+import { closeSnackbar, SnackbarProvider } from 'notistack';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { theme } from './provider/theme';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <CssBaseline />
+    <SnackbarProvider
+      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+      hideIconVariant
+      action={(snackbarId) => (
+        <IconButton size="small" onClick={() => closeSnackbar(snackbarId)}>
+          <CancelIcon fontSize="small" sx={{ color: 'white' }} />
+        </IconButton>
+      )}
+    />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
 );
 

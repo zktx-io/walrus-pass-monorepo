@@ -2,6 +2,7 @@ import React from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import './App.css';
 import { Box, Container, Stack, Typography } from '@mui/material';
+import { enqueueSnackbar } from 'notistack';
 
 function App() {
   return (
@@ -23,15 +24,18 @@ function App() {
           justifyContent="center"
           alignItems="center"
         >
-          <Typography variant="h3" color="white">
-            Walrus Pass Verifier
-          </Typography>
+          <Typography variant="h3">Walrus Pass Verifier</Typography>
           <Box sx={{ width: '400px' }}>
-            <Scanner onScan={(result) => console.log(result)} />;
+            <Scanner
+              onScan={(result) => {
+                enqueueSnackbar(`${JSON.stringify(result)}`, {
+                  variant: 'success',
+                });
+              }}
+            />
+            ;
           </Box>
-          <Typography variant="h5" color="white">
-            {`Security code :`}
-          </Typography>
+          <Typography variant="h5">{`Security code :`}</Typography>
         </Stack>
       </Container>
     </div>
