@@ -156,7 +156,15 @@ export const DidDocs = () => {
                       </IconButton>
                     </span>
                   </Box>
-                  <Typography gutterBottom sx={{ color: 'text.primary' }}>
+                  <Typography
+                    gutterBottom
+                    sx={{
+                      color: 'text.primary',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
                     {didDoc.didDocument.id}
                   </Typography>
                 </CardContent>

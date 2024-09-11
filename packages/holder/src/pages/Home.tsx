@@ -171,7 +171,16 @@ export const Home = () => {
           </Button>
         )}
         {initialized && walrusState && walrusState.account.zkAddress && (
-          <Stack spacing={2}>
+          <Stack
+            spacing={2}
+            sx={{
+              width: {
+                md: '620px',
+                sm: '420px',
+                xs: '360px',
+              },
+            }}
+          >
             <Box
               display="flex"
               justifyContent="space-between"

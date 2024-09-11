@@ -90,7 +90,7 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
       <IconButton size="small" onClick={handleClickOpen}>
         <QrCode2Icon fontSize="small" />
       </IconButton>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Walrus Bar Code</DialogTitle>
         <DialogContent>
           <Stack
@@ -122,7 +122,11 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
             {svgContent && (
               <Box
                 sx={{
-                  width: 460,
+                  width: {
+                    md: '620px',
+                    sm: '420px',
+                    xs: '400px',
+                  },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',

@@ -124,7 +124,15 @@ export const Account = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography sx={{ color: 'text.secondary' }}>account</Typography>
-              <Typography gutterBottom sx={{ color: 'text.primary' }}>
+              <Typography
+                gutterBottom
+                sx={{
+                  color: 'text.primary',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
                 {walrusState.account.zkAddress.address}
               </Typography>
             </CardContent>
