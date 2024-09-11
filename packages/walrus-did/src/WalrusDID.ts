@@ -87,7 +87,7 @@ export class WalrusDID {
     throw new Error('signer error')
   }
 
-  async verifyJWT(jwt: string, resolver: Resolvable, audience: string): Promise<JWTVerified> {
+  static async verifyJWT(jwt: string, resolver: Resolvable, audience: string): Promise<JWTVerified> {
     const decoded = decodeJWT(jwt)
     if (decoded.header.alg === 'zkLogin') {
       return verifyZkLoginJWT(jwt, { resolver, audience })
