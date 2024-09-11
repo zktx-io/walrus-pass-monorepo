@@ -42,3 +42,13 @@
 - **Flexibility**: Supports a wide range of digital assets and rights management, customizable to meet specific business needs.
 
 **Walrus Pass** is a powerful tool for securely managing digital assets and proving ownership rights. It is ideal for subscription service providers, event organizers, digital content creators, and distributors. The integration of **zkLogin** simplifies the creation of decentralized identities, helping organizations deliver superior customer experiences while streamlining their operations.
+
+## Eample
+
+### [Holder](https://4yju9x2wv34m3zpqg5dt1eaxvor0d0wpvett3rmebzy6xxrdvh.walrus.site/)
+
+**Walrus Pass Holder** is a demo for issuing, managing, and submitting certificates.
+
+### [Verifier](https://5uioge3rm38rk7tz0mv8mvrtfewp9cz1wxnsty9x9octtkeh8g.walrus.site)
+
+**Walrus Pass Verifier** is a demo for verifying certificates submitted by the **Walrus Pass Holder** using the proof deployed on **Walrus**.
