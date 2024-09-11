@@ -19,7 +19,6 @@ export const getZkProof = async ({
   salt: string;
 }): Promise<string> => {
   try {
-    console.log('start generate proof ...');
     const res = await fetch('https://prover-dev.mystenlabs.com/v1', {
       method: 'POST',
       headers: {
