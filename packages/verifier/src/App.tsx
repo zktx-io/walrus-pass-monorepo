@@ -14,8 +14,8 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100vh',
-          pt: { xs: 8, sm: 12 },
-          pb: { xs: 8, sm: 12 },
+          pt: { xs: 2, sm: 6 },
+          pb: { xs: 2, sm: 6 },
         }}
       >
         <Stack
