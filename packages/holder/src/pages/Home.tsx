@@ -65,7 +65,7 @@ export const Home = () => {
         // await fs.rmFile(FILE_NAME_DID_DOCS);
       }
       setWalrusState(undefined);
-      navigate('/',  { replace: true });
+      navigate('/', { replace: true });
     }
   };
 
@@ -119,7 +119,7 @@ export const Home = () => {
               handleReset();
             }
             setShowLoginBtn(true);
-            navigate('/',  { replace: true });
+            navigate('/', { replace: true });
             // temp
           }
         } else {
@@ -129,7 +129,7 @@ export const Home = () => {
     };
     !initialized.current && init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fs]);
+  }, [fs, location.hash]);
 
   return (
     <Container
