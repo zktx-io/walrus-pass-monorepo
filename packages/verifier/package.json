@@ -39,6 +39,7 @@
     "@mysten/zklogin": "^0.7.18",
     "@yudiel/react-qr-scanner": "^2.0.8",
     "@zktx.io/walrus-did": "^0.0.1",
+    "jose": "^5.8.0",
     "notistack": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

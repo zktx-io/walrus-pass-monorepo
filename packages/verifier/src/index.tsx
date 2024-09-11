@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom/client';
 import { Cancel as CancelIcon } from '@mui/icons-material';
 import { CssBaseline, IconButton, ThemeProvider } from '@mui/material';
 import { closeSnackbar, SnackbarProvider } from 'notistack';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
