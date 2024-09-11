@@ -1,6 +1,6 @@
 {
   "name": "holder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "daoauth",
   "license": "ISC",
   "description": "Self-Issued holder example",
@@ -37,8 +37,8 @@
     "@mui/material": "^6.0.2",
     "@mysten/sui": "^1.8.0",
     "@mysten/zklogin": "^0.7.18",
-    "@zktx.io/walrus-did": "^0.0.1",
-    "@zktx.io/walrus-did-resolver": "^0.0.1",
+    "@zktx.io/walrus-did": "^0.0.2",
+    "@zktx.io/walrus-did-resolver": "^0.0.2",
     "browserfs": "^1.4.3",
     "did-resolver": "^4.1.0",
     "jose": "^5.8.0",

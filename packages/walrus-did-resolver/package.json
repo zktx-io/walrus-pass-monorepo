@@ -1,6 +1,6 @@
 {
   "name": "@zktx.io/walrus-did-resolver",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Resolve DID documents for walrus did (did:walrus)",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@zktx.io/walrus-did",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create, manage and use did:walrus identifiers",
   "repository": {
     "type": "git",
