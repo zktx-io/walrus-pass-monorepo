@@ -74,7 +74,7 @@ export const Account = () => {
             const jwt = await walrusDID.signJWT(didDoc.didDocument.id, didDoc);
             const walrusDIDResolver = new WalrusDIDResolver();
             const resolver = new Resolver(walrusDIDResolver.build());
-            const verify = await walrusDID.verifyJWT(
+            const verify = await WalrusDID.verifyJWT(
               jwt,
               resolver,
               didDoc.didDocument.id,
