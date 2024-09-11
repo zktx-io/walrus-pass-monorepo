@@ -91,6 +91,7 @@ export const Home = () => {
             setWalrusState({ account, didDocs });
           } else {
             // temp
+            console.log('start generate proof');
             setShowLoginBtn(false);
             const { id_token: jwt } = queryString.parse(location.hash) as {
               id_token: string;
