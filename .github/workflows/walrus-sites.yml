@@ -22,6 +22,8 @@ jobs:
         run: |
           mkdir -p /tmp/holder
           cp -r ./packages/holder/* /tmp/holder/
+          mkdir -p /tmp/verifier
+          cp -r ./packages/verifier/* /tmp/verifier/      
 
       - name: Install dependencies in temporary directory and Build React app
         env:
