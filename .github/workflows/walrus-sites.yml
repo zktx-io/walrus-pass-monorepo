@@ -32,12 +32,31 @@ jobs:
           npm install
           npm run build
 
-      - name: Deploy site to Walrus
+      - name: Deploy site to Walrus Pass - Holder
         uses: zktx-io/walrus-sites-ga@v0.1.1
         with:
           config-path: '/tmp/holder/builder.yaml'
           site-path: '/tmp/holder/build'
           object-id: '0xc6fee78376d0041b30e4ebd6eb54a0cbf03662c1f4825d0a90bdf075a41e43fd'
+          network: 'testnet'
+        env:
+          SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
+          SUI_KEYSTORE: ${{ secrets.SUI_KEYSTORE }}
+
+      - name: Install dependencies in temporary directory and Build React app
+        env:
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          REACT_APP_ISSUER: ${{ secrets.REACT_APP_ISSUER }}
+        run: |
+          cd /tmp/verifier
+          npm install
+          npm run build
+
+      - name: Deploy site to Walrus Pass - Verifier
+        uses: zktx-io/walrus-sites-ga@v0.1.1
+        with:
+          config-path: '/tmp/verifier/builder.yaml'
+          site-path: '/tmp/verifier/build'
           network: 'testnet'
         env:
           SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}

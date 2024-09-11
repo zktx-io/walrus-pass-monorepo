@@ -10,17 +10,21 @@
     "install:did": "cd packages/walrus-did && npm i",
     "install:did-resolver": "cd packages/walrus-did-resolver && npm i",
     "install:holder": "cd packages/holder && npm i",
-    "install:all": "npm run install:did && npm run install:did-resolver && npm run install:holder",
+    "install:verifier": "cd packages/verifier && npm i",
+    "install:all": "npm run install:did && npm run install:did-resolver && npm run install:holder && npm run install:verifier",
     "format:did": "cd packages/walrus-did && npm run format",
     "format:did-resolver": "cd packages/walrus-did-resolver && npm run format",
     "format:holder": "cd packages/holder && npm run format",
-    "format": "npm run format:did && npm run format:did-resolver && npm run format:holder",
+    "format:verifier": "cd packages/verifier && npm run format",
+    "format": "npm run format:did && npm run format:did-resolver && npm run format:holder && npm run format:verifier",
     "build:did": "cd packages/walrus-did && npm run build",
     "build:did-resolver": "cd packages/walrus-did-resolver && npm run build",
     "build:holder": "cd packages/holder && npm run build",
+    "build:verifier": "cd packages/verifier && npm run build",
     "build": "npm run build:did && npm run build:did-resolver",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd packages/holder && npm run start",
+    "start:holder": "cd packages/holder && npm run start",
+    "start:verifier": "cd packages/verifier && npm run start",
     "version:patch": "lerna version patch"
   },
   "author": "daoauth",
@@ -29,7 +33,8 @@
   "workspaces": [
     "packages/walrus-did",
     "packages/walrus-did-resolver",
-    "packages/holder"
+    "packages/holder",
+    "packages/verifier"
   ],
   "devDependencies": {
     "lerna": "^8.1.8"
