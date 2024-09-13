@@ -96,25 +96,29 @@ export const Home = () => {
               id_token: string;
             };
             if (jwt) {
-              const address = jwtToAddress(jwt, BigInt(SALT_TEMP));
-              const proof = await getZkProof({
-                randomness: account.nonce.randomness,
-                maxEpoch: account.nonce.maxEpoch,
-                jwt,
-                ephemeralPublicKey: account.nonce.publicKey,
-                salt: SALT_TEMP,
-              });
-              account.zkAddress = {
-                address,
-                salt: SALT_TEMP,
-                proof,
-                jwt,
-              };
-              setWalrusState({ account, didDocs: [] });
-              await fs.writeFile(
-                FILE_NAME_ACCOUNT,
-                Buffer.from(JSON.stringify(account), 'utf8'),
-              );
+              try {
+                const address = jwtToAddress(jwt, BigInt(SALT_TEMP));
+                const proof = await getZkProof({
+                  randomness: account.nonce.randomness,
+                  maxEpoch: account.nonce.maxEpoch,
+                  jwt,
+                  ephemeralPublicKey: account.nonce.publicKey,
+                  salt: SALT_TEMP,
+                });
+                account.zkAddress = {
+                  address,
+                  salt: SALT_TEMP,
+                  proof,
+                  jwt,
+                };
+                setWalrusState({ account, didDocs: [] });
+                await fs.writeFile(
+                  FILE_NAME_ACCOUNT,
+                  Buffer.from(JSON.stringify(account), 'utf8'),
+                );
+              } catch (error) {
+                console.log(error);
+              }
             } else {
               handleReset();
             }

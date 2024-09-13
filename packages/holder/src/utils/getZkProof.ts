@@ -1,7 +1,7 @@
 import { getExtendedEphemeralPublicKey } from '@mysten/zklogin';
 import { Secp256r1PublicKey } from '@mysten/sui/keypairs/secp256r1';
 import { fromB64 } from '@mysten/sui/utils';
-import { enqueueSnackbar } from 'notistack';
+// import { enqueueSnackbar } from 'notistack';
 
 // import { ENOKI } from './config';
 
@@ -43,9 +43,11 @@ export const getZkProof = async ({
     }
     return JSON.stringify(data);
   } catch (error) {
+    /*
     enqueueSnackbar(`${error}`, {
       variant: 'error',
     });
+    */
     throw new Error(`${error}`);
   }
 };
