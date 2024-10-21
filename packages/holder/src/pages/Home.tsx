@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string';
 import {
   Box,
   Button,
@@ -17,15 +16,9 @@ import { useRecoilState } from 'recoil';
 import { useProviderFS } from '../provider/file';
 import { IAccount, walrusDidState } from '../recoil';
 import { getGoogleloginInfo } from '../utils/getGoogleloginInfo';
-import {
-  FILE_NAME_ACCOUNT,
-  FILE_NAME_DID_DOCS,
-  SALT_TEMP,
-} from '../utils/config';
+import { FILE_NAME_ACCOUNT, FILE_NAME_DID_DOCS } from '../utils/config';
 import { Account } from '../component/Account';
 import { DidDocs } from '../component/DidDocs';
-import { jwtToAddress } from '@mysten/zklogin';
-import { getZkProof } from '../utils/getZkProof';
 
 export const Home = () => {
   const initialized = useRef<boolean>(false);
@@ -36,7 +29,7 @@ export const Home = () => {
   const location = useLocation();
 
   const [walrusState, setWalrusState] = useRecoilState(walrusDidState);
-  const [showLoginBtn, setShowLoginBtn] = useState<boolean>(true);
+  const [showLoginBtn] = useState<boolean>(true);
 
   const handleGooglelogin = async () => {
     if (fs) {
@@ -79,53 +72,15 @@ export const Home = () => {
           const account = JSON.parse(
             Buffer.from(accountJson).toString('utf8'),
           ) as IAccount;
-          if (account.zkAddress) {
-            let didDocs: string[] = [];
-            const hasDocs = await fs.isExist(FILE_NAME_DID_DOCS);
-            if (hasDocs) {
-              const docs = await fs.readFile(FILE_NAME_DID_DOCS);
-              didDocs = JSON.parse(
-                Buffer.from(docs).toString('utf8'),
-              ) as string[];
-            }
-            setWalrusState({ account, didDocs });
-          } else {
-            // temp
-            setShowLoginBtn(false);
-            const { id_token: jwt } = queryString.parse(location.hash) as {
-              id_token: string;
-            };
-            if (jwt) {
-              try {
-                const address = jwtToAddress(jwt, BigInt(SALT_TEMP));
-                const proof = await getZkProof({
-                  randomness: account.nonce.randomness,
-                  maxEpoch: account.nonce.maxEpoch,
-                  jwt,
-                  ephemeralPublicKey: account.nonce.publicKey,
-                  salt: SALT_TEMP,
-                });
-                account.zkAddress = {
-                  address,
-                  salt: SALT_TEMP,
-                  proof,
-                  jwt,
-                };
-                setWalrusState({ account, didDocs: [] });
-                await fs.writeFile(
-                  FILE_NAME_ACCOUNT,
-                  Buffer.from(JSON.stringify(account), 'utf8'),
-                );
-              } catch (error) {
-                console.log(error);
-              }
-            } else {
-              handleReset();
-            }
-            setShowLoginBtn(true);
-            navigate('/', { replace: true });
-            // temp
+          let didDocs: string[] = [];
+          const hasDocs = await fs.isExist(FILE_NAME_DID_DOCS);
+          if (hasDocs) {
+            const docs = await fs.readFile(FILE_NAME_DID_DOCS);
+            didDocs = JSON.parse(
+              Buffer.from(docs).toString('utf8'),
+            ) as string[];
           }
+          setWalrusState({ account, didDocs });
         } else {
           setWalrusState(undefined);
         }
