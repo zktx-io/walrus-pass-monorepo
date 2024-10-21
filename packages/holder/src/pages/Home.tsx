@@ -35,8 +35,6 @@ export const Home = () => {
     if (fs) {
       const { account, url } = await getGoogleloginInfo();
 
-      alert(url);
-
       await fs.writeFile(
         FILE_NAME_ACCOUNT,
         Buffer.from(JSON.stringify(account), 'utf8'),
