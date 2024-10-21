@@ -39,6 +39,7 @@ jobs:
         with:
           site-path: '/tmp/holder/build'
           network: 'testnet'
+          object-id: '0x81dd01945348e0610d2fd97a420e7d6697d0da7d1fa0a042eee80f30fda34436'
           epochs: 100
         env:
           SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
@@ -58,6 +59,7 @@ jobs:
         with:
           site-path: '/tmp/verifier/build'
           network: 'testnet'
+          object-id: '0xabc84c53f45e6f9d99fa27a8ffc79d38bcb675eb00f63355d87df9fcb1a40238'
           epochs: 100
         env:
           SUI_ADDRESS: ${{ vars.SUI_ADDRESS }}
