@@ -35,7 +35,7 @@ jobs:
           npm run build
 
       - name: Deploy site to Walrus Pass - Holder
-        uses: zktx-io/walrus-sites-ga@v0.2.6
+        uses: zktx-io/walrus-sites-ga@v0.2.7
         with:
           site-path: '/tmp/holder/build'
           network: 'testnet'
@@ -55,7 +55,7 @@ jobs:
           npm run build
 
       - name: Deploy site to Walrus Pass - Verifier
-        uses: zktx-io/walrus-sites-ga@v0.2.6
+        uses: zktx-io/walrus-sites-ga@v0.2.7
         with:
           site-path: '/tmp/verifier/build'
           network: 'testnet'
