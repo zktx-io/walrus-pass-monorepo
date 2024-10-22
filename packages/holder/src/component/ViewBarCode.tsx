@@ -4,6 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import NfcIcon from '@mui/icons-material/Nfc';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import { Box, IconButton, Stack, TextField } from '@mui/material';
 import { DIDResolutionResult } from 'did-resolver';
@@ -18,15 +19,17 @@ import { walrusDidState } from '../recoil';
 export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>('');
+  const [isNFC, setIsNFC] = useState<boolean>(false);
 
   const [walrusState] = useRecoilState(walrusDidState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [qrValue, setQRValue] = useState<string>('');
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (isQR: boolean) => {
     setQRValue('');
     setInputValue('');
     setOpen(true);
+    setIsNFC(!isQR);
   };
 
   const handleClose = () => {
@@ -37,7 +40,7 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
     setInputValue(event.target.value);
   };
 
-  const handleGenerateBarCode = async () => {
+  const handleSync = async () => {
     if (walrusState?.account.nonce && walrusState.account.zkAddress) {
       setIsLoading(true);
       try {
@@ -82,7 +85,14 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
 
   return (
     <>
-      <IconButton size="small" onClick={handleClickOpen}>
+      <IconButton
+        size="small"
+        disabled={!('NDEFReader' in window)}
+        onClick={() => handleClickOpen(false)}
+      >
+        <NfcIcon fontSize="small" />
+      </IconButton>
+      <IconButton size="small" onClick={() => handleClickOpen(true)}>
         <QrCode2Icon fontSize="small" />
       </IconButton>
       <Dialog fullWidth open={open} onClose={handleClose}>
@@ -108,9 +118,9 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
                 <Button
                   variant="contained"
                   disabled={isLoading || !inputValue}
-                  onClick={handleGenerateBarCode}
+                  onClick={handleSync}
                 >
-                  Generate
+                  {isNFC ? 'NFC' : 'Generate'}
                 </Button>
               </Stack>
             )}
