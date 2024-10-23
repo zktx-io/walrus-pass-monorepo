@@ -23,9 +23,8 @@ function App() {
           variant: 'error',
         });
       });
-
       ndef.addEventListener('reading', (data: any) => {
-        enqueueSnackbar(`> Serial Number: ${JSON.stringify(data)}`, {
+        enqueueSnackbar(`${JSON.stringify(data)}`, {
           variant: 'info',
         });
       });
