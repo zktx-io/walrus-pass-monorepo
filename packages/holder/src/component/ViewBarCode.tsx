@@ -71,17 +71,17 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
             const jwt = await walrusDID.signJWT(didDoc.didDocument.id, {
               walrus: { code: inputValue },
             });
-            try {
-              if (isNFC && 'NDEFReader' in window) {
+            if (isNFC && 'NDEFReader' in window) {
+              try {
                 const ndef = new (window as any).NDEFReader();
                 await ndef.write(jwt);
-              } else {
-                setQRValue(jwt);
+              } catch (error) {
+                enqueueSnackbar(`${error}`, {
+                  variant: 'error',
+                });
               }
-            } catch (error) {
-              enqueueSnackbar(`${error}`, {
-                variant: 'error',
-              });
+            } else {
+              setQRValue(jwt);
             }
           }
         }
