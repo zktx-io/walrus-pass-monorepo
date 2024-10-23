@@ -14,12 +14,29 @@ function App() {
   const [isNFC, setIsNFC] = useState<boolean>(false);
   const [init, setInit] = useState<boolean>(false);
 
-  const handleReset = () => {
-    const generateRandomNumber = () => {
-      const number = Math.floor(1000 + Math.random() * 9000);
-      setRandomNumber(number.toString());
-    };
-    generateRandomNumber();
+  const handleNFCScan = async () => {
+    try {
+      const ndef = new (window as any).NDEFReader();
+      await ndef.scan();
+      ndef.addEventListener('readingerror', () => {
+        enqueueSnackbar('Cannot read data from the NFC tag. Try another one?', {
+          variant: 'error',
+        });
+      });
+
+      ndef.addEventListener('reading', (data: any) => {
+        enqueueSnackbar(`> Serial Number: ${JSON.stringify(data)}`, {
+          variant: 'info',
+        });
+      });
+      enqueueSnackbar('Scan started', {
+        variant: 'info',
+      });
+    } catch (error) {
+      enqueueSnackbar(`${error}`, {
+        variant: 'error',
+      });
+    }
   };
 
   const handleVerification = async (jwt: string) => {
@@ -63,8 +80,12 @@ function App() {
   };
 
   useEffect(() => {
+    const generateRandomNumber = () => {
+      const number = Math.floor(1000 + Math.random() * 9000);
+      setRandomNumber(number.toString());
+    };
     setDisabled(false);
-    handleReset();
+    generateRandomNumber();
   }, []);
 
   return (
@@ -95,6 +116,7 @@ function App() {
                   onClick={() => {
                     setIsNFC(true);
                     setInit(true);
+                    handleNFCScan();
                   }}
                 >
                   NFC
