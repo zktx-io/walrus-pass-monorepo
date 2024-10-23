@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import './App.css';
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import { decodeJwt } from 'jose';
 import { Resolver } from 'did-resolver';
@@ -11,6 +11,8 @@ import { WalrusDID } from '@zktx.io/walrus-did';
 function App() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const [randomNumber, setRandomNumber] = useState<string>('');
+  const [isNFC, setIsNFC] = useState<boolean>(false);
+  const [init, setInit] = useState<boolean>(false);
 
   const handleReset = () => {
     const generateRandomNumber = () => {
@@ -86,16 +88,40 @@ function App() {
         >
           <Typography variant="h3">Walrus Pass Verifier</Typography>
           <Box sx={{ width: '400px' }}>
-            <Scanner
-              paused={disabled}
-              scanDelay={30000}
-              onScan={([result]) => {
-                handleVerification(result.rawValue);
-              }}
-            />
-            ;
+            {!init && (
+              <Box>
+                <Button
+                  disabled={!('NDEFReader' in window)}
+                  onClick={() => {
+                    setIsNFC(true);
+                    setInit(true);
+                  }}
+                >
+                  NFC
+                </Button>
+                <Button
+                  onClick={() => {
+                    setInit(true);
+                  }}
+                >
+                  QR
+                </Button>
+              </Box>
+            )}
+            {init && isNFC && <Typography variant="h4">NFC Scan</Typography>}
+            {init && !isNFC && (
+              <Scanner
+                paused={disabled}
+                scanDelay={30000}
+                onScan={([result]) => {
+                  handleVerification(result.rawValue);
+                }}
+              />
+            )}
           </Box>
-          <Typography variant="h5">{`Security code : ${randomNumber}`}</Typography>
+          {init && (
+            <Typography variant="h5">{`Security code : ${randomNumber}`}</Typography>
+          )}
         </Stack>
       </Container>
     </div>
