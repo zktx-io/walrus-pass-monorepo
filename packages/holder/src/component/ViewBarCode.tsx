@@ -72,12 +72,12 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
               walrus: { code: inputValue },
             });
             try {
-              if(isNFC && ('NDEFReader' in window)) {
+              if (isNFC && 'NDEFReader' in window) {
                 const ndef = new (window as any).NDEFReader();
                 await ndef.write(jwt);
               } else {
                 setQRValue(jwt);
-              }  
+              }
             } catch (error) {
               enqueueSnackbar(`${error}`, {
                 variant: 'error',
