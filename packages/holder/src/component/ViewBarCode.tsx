@@ -71,7 +71,18 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
             const jwt = await walrusDID.signJWT(didDoc.didDocument.id, {
               walrus: { code: inputValue },
             });
-            setQRValue(jwt);
+            try {
+              if(isNFC && ('NDEFReader' in window)) {
+                const ndef = new (window as any).NDEFReader();
+                await ndef.write(jwt);
+              } else {
+                setQRValue(jwt);
+              }  
+            } catch (error) {
+              enqueueSnackbar(`${error}`, {
+                variant: 'error',
+              });
+            }
           }
         }
       } catch (error) {
@@ -120,7 +131,7 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
                   disabled={isLoading || !inputValue}
                   onClick={handleSync}
                 >
-                  {isNFC ? 'NFC' : 'Generate'}
+                  Ready
                 </Button>
               </Stack>
             )}
