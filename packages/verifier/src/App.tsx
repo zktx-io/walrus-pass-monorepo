@@ -13,9 +13,11 @@ import { WalrusDID } from '@zktx.io/walrus-did';
 function App() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const [randomNumber, setRandomNumber] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isNFC, setIsNFC] = useState<boolean>(false);
   const [init, setInit] = useState<boolean>(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleNFCScan = async () => {
     try {
       const ndef = new (window as any).NDEFReader();
