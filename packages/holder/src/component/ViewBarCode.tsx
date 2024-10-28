@@ -4,7 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import NfcIcon from '@mui/icons-material/Nfc';
+// import NfcIcon from '@mui/icons-material/Nfc';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import { Box, IconButton, Stack, TextField } from '@mui/material';
 import { DIDResolutionResult } from 'did-resolver';
@@ -96,13 +96,15 @@ export const ViewBarCode = ({ didDoc }: { didDoc: DIDResolutionResult }) => {
 
   return (
     <>
-      <IconButton
-        size="small"
-        disabled={!('NDEFReader' in window)}
-        onClick={() => handleClickOpen(false)}
-      >
-        <NfcIcon fontSize="small" />
-      </IconButton>
+      {/*
+        <IconButton
+          size="small"
+          disabled={!('NDEFReader' in window)}
+          onClick={() => handleClickOpen(false)}
+        >
+          <NfcIcon fontSize="small" />
+        </IconButton>
+      */}
       <IconButton size="small" onClick={() => handleClickOpen(true)}>
         <QrCode2Icon fontSize="small" />
       </IconButton>
