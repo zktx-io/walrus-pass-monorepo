@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import './App.css';
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
+// import NfcIcon from '@mui/icons-material/Nfc';
+import QrCode2Icon from '@mui/icons-material/QrCode2';
 import { enqueueSnackbar } from 'notistack';
 import { decodeJwt } from 'jose';
 import { Resolver } from 'did-resolver';
@@ -110,20 +112,24 @@ function App() {
           <Box sx={{ width: '400px' }}>
             {!init && (
               <Box>
+                {/*
+                  <Button
+                    disabled={!('NDEFReader' in window)}
+                    onClick={() => {
+                      setIsNFC(true);
+                      setInit(true);
+                      handleNFCScan();
+                    }}
+                    startIcon={<NfcIcon />}
+                  >
+                    NFC
+                  </Button>
+                */}
                 <Button
-                  disabled={!('NDEFReader' in window)}
-                  onClick={() => {
-                    setIsNFC(true);
-                    setInit(true);
-                    handleNFCScan();
-                  }}
-                >
-                  NFC
-                </Button>
-                <Button
                   onClick={() => {
                     setInit(true);
                   }}
+                  startIcon={<QrCode2Icon />}
                 >
                   QR
                 </Button>
